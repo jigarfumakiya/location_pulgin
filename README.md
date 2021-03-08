@@ -9,7 +9,7 @@ For Now I am using [Volley by Google](https://developer.android.com/training/vol
 After post request successful you will get the response in String so user can manipulate the response however want.
 
 ## How is it works?
-###You can use below code to Make your Post request.
+### You can use below code to Make your Post request.
 
 ``` LocationPermissions _locationPermissions = LocationPermissions();
 
@@ -38,7 +38,7 @@ After post request successful you will get the response in String so user can ma
 
 ```
 
-###Note-:This Project is just demo purpose.
+### Note-:This Project is just demo purpose.
 
 
 
