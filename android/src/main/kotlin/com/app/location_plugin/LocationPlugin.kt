@@ -2,7 +2,6 @@ package com.app.location_plugin
 
 import android.content.Context
 import androidx.annotation.NonNull
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -11,8 +10,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import java.util.*
-import kotlin.collections.HashMap
 
 /** LocationPlugin */
 class LocationPlugin : FlutterPlugin, MethodCallHandler {
@@ -37,8 +34,8 @@ class LocationPlugin : FlutterPlugin, MethodCallHandler {
         } else if (call.method == "getCurrentLocation") {
             result.success(getCurrentLocation());
         } else if (call.method == "getLocation") {
-            print("onmethodscall" + call.arguments.toString());
-            result.success(getLocation(call.arguments()));
+            
+            getLocation(call.arguments(), result);
         } else {
             result.notImplemented()
         }
@@ -48,30 +45,59 @@ class LocationPlugin : FlutterPlugin, MethodCallHandler {
         channel.setMethodCallHandler(null)
     }
 
-    // to get the user current location
+    // to get the user current location and call API.
     private fun getCurrentLocation(): String {
         return "Null";
     }
 
-    private fun getLocation(apiRequest: HashMap<String, Any>): String {
-        createAPIClient("jigar");
-        return "";
+
+    private fun getLocation(apiRequest: HashMap<String, Any>, result: Result) {
+        //user will send data and will just call post request
+        createAPIClient(apiRequest["apiclient"] as HashMap<String, Any>, result);
+
     }
 
-    private fun createAPIClient(baseUrl: String) {
-        val BASE_URL: String = baseUrl;
+    private fun createAPIClient(mapData: HashMap<String, Any>, result: Result) {
+        ///create API Client and pass all the data Accordingly
+        val BASE_URL: String = mapData["baseUrl"].toString();
 
-        val queue = Volley.newRequestQueue(applicationContext)
-
-        // Request a string response from the provided URL.
-        val stringReq = StringRequest(Request.Method.POST, BASE_URL,
-                Response.Listener<String> { response ->
-
-
+        //we are returing string response so user can manipulate how ever they want
+        val stringRequest: StringRequest = object : StringRequest(Method.POST, BASE_URL,
+                Response.Listener { response ->
+                    //return the response came form the server so user can do whatever they want
+                    result.success(response);
                 },
-                Response.ErrorListener {
+                Response.ErrorListener { error ->
+                    //return the error object so user can find out what is the issue
+                    result.error(error.networkResponse.toString(), error.message, error.localizedMessage);
+                }) {
+              //pass map herer that user send form flutter
+            override fun getParams(): Map<String, String> {
+                //here is the data what user sent us
+                val params = mapData["data"] as Map<String, String>;
+                val convertedMap = HashMap<String, String>();
 
-                })
-        queue.add(stringReq)
+                //converted all user map to string map so user don't face any issue because volley supports only Map<String,String>
+                for (strKey in params.keys) {
+                    convertedMap[strKey] = params[strKey].toString()
+                }
+
+                return convertedMap
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                ///user can pass the header accordingly there Request
+
+                val header = mapData["header"] as MutableMap<String, String>;
+                return header;
+
+            }
+        }
+        val requestQueue = Volley.newRequestQueue(applicationContext)
+        requestQueue.add(stringRequest)
+
+
     }
+
+
 }

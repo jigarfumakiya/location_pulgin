@@ -14,6 +14,10 @@ class APIRequest {
       this.header,
       @required this.methods});
 
-  Map<String, dynamic> toMap() =>
-      {"baseUrl": baseUrl, "data": data, "header": header, "methods": 'post'};
+  Map<String, dynamic> toMap() => {
+        "baseUrl": baseUrl,
+        "data": data,
+        "header": header ?? {'Content-Type': 'application/x-www-form-urlencoded'},
+        "methods": 'post'
+      };
 }

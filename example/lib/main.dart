@@ -36,7 +36,8 @@ class _MyAppState extends State<MyApp> {
       APIRequest apiRequest = new APIRequest(
           baseUrl: baseUrl, methods: RequestMethods.POST, data: postData);
 
-      await _locationPlugin.locationLog(request: apiRequest);
+     String response= await _locationPlugin.locationLog(request: apiRequest);
+
     } catch (e) {
       throw e;
     }
