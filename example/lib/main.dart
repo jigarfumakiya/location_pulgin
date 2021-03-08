@@ -15,11 +15,12 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  LocationPlugin _locationPlugin = new LocationPlugin();
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    // initPlatformState();
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -27,7 +28,8 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await LocationPlugin.platformVersion;
+      platformVersion = await _locationPlugin.locationLog(
+          latitude: 22.2587, longitude: 71.1924, extra: 'Gujarat');
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -50,7 +52,14 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('Calling form Native: $_platformVersion\n'),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: initPlatformState,
+          child: IconButton(
+            onPressed: initPlatformState,
+            icon: Icon(Icons.location_on),
+          ),
         ),
       ),
     );
