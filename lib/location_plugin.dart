@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:location_permissions/location_permissions.dart';
+import 'package:location_plugin/network-layer/APIRequest.dart';
+export 'package:location_plugin/network-layer/APIRequest.dart';
 
 class LocationPlugin {
   static const MethodChannel _channel = const MethodChannel('location_plugin');
@@ -13,12 +15,9 @@ class LocationPlugin {
     return version;
   }
 
-  Future<String> locationLog(
-      {@required dynamic latitude,
-      @required dynamic longitude,
-      @required dynamic extra}) async {
+  Future<String> locationLog({APIRequest request}) async {
     final String location = await _channel
-        .invokeMethod('getLocation',{"latitude":latitude,"longitude":latitude,"extra":extra,});
+        .invokeMethod('getLocation', {'apiclient': request.toMap()});
     return location;
   }
 
