@@ -28,8 +28,8 @@ class LocationPlugin : FlutterPlugin, MethodCallHandler {
         } else if (call.method == "getCurrentLocation") {
             result.success(getCurrentLocation());
         } else if (call.method == "getLocation") {
-            print("resule"+ call.arguments.toString());
-            result.success(getLocation(call.argument<Double>("latitude"), call.argument<Double>("longitude"), call.argument<String>("extra")));
+
+            getLocation(call.arguments(), result);
         } else {
             result.notImplemented()
         }

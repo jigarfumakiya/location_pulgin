@@ -1,8 +1,6 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-import 'package:location_plugin/location_plugin.dart';
+import 'package:location_plugin_example/HomeScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,21 +45,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Calling form Native: $_platformVersion\n'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: initPlatformState,
-          child: IconButton(
-            onPressed: initPlatformState,
-            icon: Icon(Icons.location_on),
-          ),
-        ),
-      ),
+      builder: BotToastInit(),
+      navigatorObservers: [BotToastNavigatorObserver()], //2.
+      home: HomeScreen(),
     );
   }
 }
