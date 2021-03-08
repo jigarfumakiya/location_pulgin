@@ -23,23 +23,22 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await _locationPlugin.locationLog(
-          latitude: 22.2587, longitude: 71.1924, extra: 'Gujarat');
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      String baseUrl =
+          'https://6045d210f0c6dc00177b0cba.mockapi.io/postGeoInfo';
+      Map<String,dynamic> postData = new Map<String,dynamic>();
+      postData['lat'] = 22.2587;
+      postData['long'] = 71.1924;
+      postData['extra'] = 'Gujarat';
+
+      APIRequest apiRequest = new APIRequest(
+          baseUrl: baseUrl, methods: RequestMethods.POST, data: postData);
+
+     String response= await _locationPlugin.locationLog(request: apiRequest);
+
+    } catch (e) {
+      throw e;
     }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
