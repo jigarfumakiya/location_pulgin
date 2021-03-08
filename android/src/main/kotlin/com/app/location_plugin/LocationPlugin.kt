@@ -34,7 +34,6 @@ class LocationPlugin : FlutterPlugin, MethodCallHandler {
         } else if (call.method == "getCurrentLocation") {
             result.success(getCurrentLocation());
         } else if (call.method == "getLocation") {
-            
             getLocation(call.arguments(), result);
         } else {
             result.notImplemented()

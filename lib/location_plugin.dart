@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:location_permissions/location_permissions.dart';
 import 'package:location_plugin/network-layer/APIRequest.dart';
@@ -27,8 +25,8 @@ class LocationPlugin {
     PermissionStatus status = await _requestPermission();
     if (status == PermissionStatus.granted) {
       try {
-        final String location = await _channel.invokeMethod('getCurrentLocation',
-        );
+        final String location =
+            await _channel.invokeMethod('getCurrentLocation');
         return location;
       } catch (e) {
         throw e;

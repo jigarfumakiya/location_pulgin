@@ -51,9 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
         return Center(child: CircularProgressIndicator(strokeWidth: 5));
       },
     );
+
     try {
-      String baseUrl =
-          'https://6045d210f0c6dc00177b0cba.mockapi.io/postGeoInfo';
+      String baseUrl = 'https://6045d210f0c6dc00177b0cba.mockapi.io/postGeoInfo';
       Map<String, dynamic> postData = new Map<String, dynamic>();
       postData['lat'] = 22.2587;
       postData['long'] = 71.1924;
