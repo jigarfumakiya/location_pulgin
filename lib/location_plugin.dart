@@ -15,7 +15,7 @@ class LocationPlugin {
 
   Future<String> locationLog({APIRequest request}) async {
     ///calling methods to Native Android
-    ///Convert user data to Map
+    ///convert user data to Map
     final String location = await _channel
         .invokeMethod('getLocation', {'apiclient': request.toMap()});
     return location;
@@ -25,8 +25,7 @@ class LocationPlugin {
     PermissionStatus status = await _requestPermission();
     if (status == PermissionStatus.granted) {
       try {
-        final String location =
-            await _channel.invokeMethod('getCurrentLocation');
+        final String location = await _channel.invokeMethod('getCurrentLocation');
         return location;
       } catch (e) {
         throw e;

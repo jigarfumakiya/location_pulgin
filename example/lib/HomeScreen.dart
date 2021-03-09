@@ -52,8 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
 
+    //this methods will get user current location and post to server
     try {
-      String baseUrl = 'https://6045d210f0c6dc00177b0cba.mockapi.io/postGeoInfo';
+      String baseUrl =
+          'https://6045d210f0c6dc00177b0cba.mockapi.io/postGeoInfo';
       Map<String, dynamic> postData = new Map<String, dynamic>();
       postData['lat'] = 22.2587;
       postData['long'] = 71.1924;
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: postRequest,
+              onPressed: getLocationPostRequest,
               child: Text('Get Location Log',
                   style: TextStyle(color: Colors.white)),
               style: ElevatedButton.styleFrom(

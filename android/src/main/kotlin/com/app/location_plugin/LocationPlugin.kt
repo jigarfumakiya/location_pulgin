@@ -68,25 +68,23 @@ class LocationPlugin : FlutterPlugin, MethodCallHandler {
                 },
                 Response.ErrorListener { error ->
                     //return the error object so user can find out what is the issue
-                    result.error(error.networkResponse.toString(), error.message, error.localizedMessage);
+                    result.error(error.networkResponse.toString(), error.message, error.localizedMessage)
                 }) {
-              //pass map herer that user send form flutter
+              //pass map here that user send form flutter
             override fun getParams(): Map<String, String> {
                 //here is the data what user sent us
-                val params = mapData["data"] as Map<String, String>;
-                val convertedMap = HashMap<String, String>();
+                val params = mapData["data"] as Map<String, String>
+                val convertedMap = HashMap<String, String>()
 
                 //converted all user map to string map so user don't face any issue because volley supports only Map<String,String>
                 for (strKey in params.keys) {
                     convertedMap[strKey] = params[strKey].toString()
                 }
-
                 return convertedMap
             }
 
             override fun getHeaders(): MutableMap<String, String> {
                 ///user can pass the header accordingly there Request
-
                 val header = mapData["header"] as MutableMap<String, String>;
                 return header;
 
@@ -94,8 +92,6 @@ class LocationPlugin : FlutterPlugin, MethodCallHandler {
         }
         val requestQueue = Volley.newRequestQueue(applicationContext)
         requestQueue.add(stringRequest)
-
-
     }
 
 
