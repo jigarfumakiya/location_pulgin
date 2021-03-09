@@ -8,10 +8,18 @@ For Now I am using [Volley by Google](https://developer.android.com/training/vol
 
 After post request successful you will get the response in String so user can manipulate the response however want.
 
-## How is it works?
-### You can use below code to Make your Post request.
+##Plugin depencies 
+Behind the scene, I am using a geolocator to get user location and communicating with location_plugin and the user can have position object.
 
-``` LocationPermissions _locationPermissions = LocationPermissions();
+## Methods
+As off now plugin support two methods **locationLog** methods provides functionally Post Geolocation information to designated sever, and **getUserPosition** provides current location if you want get user location and make Post request.
+Both Methods work Out of the box for getting user location you don't have ask for permission plugin ask itself.This is plugin supports only Android as of now.
+
+## How is it works?
+### getLocationPostRequest.
+
+```dart
+  LocationPermissions _locationPermissions = LocationPermissions();
 
     Future<void> getLocationPostRequest() async {
 
@@ -36,6 +44,39 @@ After post request successful you will get the response in String so user can ma
     }
   }
 
+```
+
+### getUserPosition.
+
+```dart
+  enum LocationAccuracy {
+    /// Location is accurate within a distance of 3000m on iOS and 500m on Android
+    lowest,
+  
+    /// Location is accurate within a distance of 1000m on iOS and 500m on Android
+    low,
+  
+    /// Location is accurate within a distance of 100m on iOS and between 100m and
+    /// 500m on Android
+    medium,
+  
+    /// Location is accurate within a distance of 10m on iOS and between 0m and
+    /// 100m on Android
+    high,
+  
+    /// Location is accurate within a distance of ~0m on iOS and between 0m and
+    /// 100m on Android
+    best,
+  
+    /// Location accuracy is optimized for navigation on iOS and matches the
+    /// [LocationAccuracy.best] on Android
+    bestForNavigation
+  }
+
+    LocationPermissions _locationPermissions = LocationPermissions();
+    Position _userPos = await _locationPlugin.getUserPosition(accuracy: LocationAccuracy.best);
+    
+  
 ```
 
 ### Note-:This Project is just demo purpose.
