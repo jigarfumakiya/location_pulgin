@@ -9,12 +9,6 @@ export 'package:geolocator_platform_interface/src/enums/location_accuracy.dart';
 class LocationPlugin {
   static const MethodChannel _channel = const MethodChannel('location_plugin');
 
-  static Future<String> get platformVersion async {
-    ///this methods is just checking which android version running
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
-  }
-
   Future<String> locationLog({APIRequest request}) async {
     ///calling methods to Native Android
     ///convert user data to Map

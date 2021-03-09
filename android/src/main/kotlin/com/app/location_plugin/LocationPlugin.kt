@@ -29,11 +29,7 @@ class LocationPlugin : FlutterPlugin, MethodCallHandler {
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
 
-        if (call.method == "getPlatformVersion") {
-            result.success("Android ${android.os.Build.VERSION.RELEASE}")
-        } else if (call.method == "getCurrentLocation") {
-            result.success(getCurrentLocation());
-        } else if (call.method == "getLocation") {
+        if (call.method == "getLocation") {
             getLocation(call.arguments(), result);
         } else {
             result.notImplemented()
@@ -70,7 +66,7 @@ class LocationPlugin : FlutterPlugin, MethodCallHandler {
                     //return the error object so user can find out what is the issue
                     result.error(error.networkResponse.toString(), error.message, error.localizedMessage)
                 }) {
-              //pass map here that user send form flutter
+            //pass map here that user send form flutter
             override fun getParams(): Map<String, String> {
                 //here is the data what user sent us
                 val params = mapData["data"] as Map<String, String>
