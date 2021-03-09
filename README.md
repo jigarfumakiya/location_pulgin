@@ -9,7 +9,8 @@ For Now I am using [Volley by Google](https://developer.android.com/training/vol
 After post request successful you will get the response in String so user can manipulate the response however want.
 
 
-##Plugin depencies 
+##Plugin depencies
+ 
 Behind the scene, I am using a geolocator to get user location and communicating with location_plugin and the user can have position object.
 
 ## Methods
