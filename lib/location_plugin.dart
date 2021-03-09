@@ -5,7 +5,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:location_plugin/network-layer/APIRequest.dart';
 export 'package:location_plugin/network-layer/APIRequest.dart';
 export 'package:geolocator_platform_interface/src/models/position.dart';
-
+export 'package:geolocator_platform_interface/src/enums/location_accuracy.dart';
 class LocationPlugin {
   static const MethodChannel _channel = const MethodChannel('location_plugin');
 

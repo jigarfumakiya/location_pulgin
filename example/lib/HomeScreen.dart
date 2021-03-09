@@ -84,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       //this methods will get user current location
-      Position _userPos = await _locationPlugin.getUserPosition();
+      Position _userPos = await _locationPlugin.getUserPosition(accuracy: LocationAccuracy.best);
 
       Map<String, dynamic> postData = new Map<String, dynamic>();
       postData['lat'] = _userPos.latitude;
