@@ -4,9 +4,10 @@ Location plugin provides the mechanism to geolocation information to a designate
 
 ## What is it?
 I have created methods channel that communicate wth Native code.User can create Post request and Just call Location methods and plugin will call Post request behind the seen form Native code android.
-For Now I am using [Volley by Google](https://developer.android.com/training/volley) for handling network request.
+For Now I am using [Volley by Google](https://developer.android.com/training/volley) for handling network request. If you want take look at Native Android code [here](https://github.com/jigarfumakiya/location_pulgin/blob/dev/android/src/main/kotlin/com/app/location_plugin/LocationPlugin.kt)
 
 After post request successful you will get the response in String so user can manipulate the response however want.
+
 
 ##Plugin depencies 
 Behind the scene, I am using a geolocator to get user location and communicating with location_plugin and the user can have position object.
