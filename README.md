@@ -8,7 +8,7 @@ For Now I am using [Volley by Google](https://developer.android.com/training/vol
 
 After post request successful you will get the response in String so user can manipulate the response however want.
 
-###Declare below two permission in your Android manifest file
+### Declare below two permission in your Android manifest file
 ```
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -85,9 +85,13 @@ Both Methods work Out of the box for getting user location you don't have ask fo
   
 ```
 
-###Test
+### Test
 I have added some basic test cases for plugin methods if you want take look [here](https://github.com/jigarfumakiya/location_pulgin/blob/main/test/location_plugin_test.dart)
 
+
+### Images
+![1](https://github.com/jigarfumakiya/location_pulgin/blob/dev/media/image1.png)
+![1](https://github.com/jigarfumakiya/location_pulgin/blob/dev/media/image2.png)
 
 
 
