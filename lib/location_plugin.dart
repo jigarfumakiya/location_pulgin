@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -9,7 +10,7 @@ export 'package:geolocator_platform_interface/src/enums/location_accuracy.dart';
 class LocationPlugin {
   static const MethodChannel _channel = const MethodChannel('location_plugin');
 
-  Future<String> locationLog({APIRequest request}) async {
+  Future<String> locationLog({@required APIRequest request}) async {
     ///calling methods to Native Android
     ///convert user data to Map
     final String location = await _channel
